@@ -87,8 +87,8 @@ __host__ void GPUInterface::conv_forward_gpu_prolog(const float *host_output, co
 
     float* host_out_tmp = (float*) host_output;
     
-    int Out_Size = ceil(Batch*Map_out*Height_Out*Width_Out/stream_num);
-    int In_Size  = ceil(Batch*Channel*Height*Width/stream_num);
+    int Out_Size = Batch*Map_out*Height_Out*Width_Out/stream_num;
+    int In_Size = Batch*Channel*Height*Width/stream_num;
     int Kernel_Size = Map_out*Channel*K*K;
 
     int W_grid = (Width_Out+TILE_WIDTH-1)/TILE_WIDTH;
